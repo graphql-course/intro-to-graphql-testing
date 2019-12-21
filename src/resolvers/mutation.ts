@@ -5,6 +5,10 @@ const mutation: IResolvers = {
         add(_: void, { value }: any) {
             LIST.push(value);
             return LIST;
+        },
+        removeLast() {
+            (LIST.length > 0) ? LIST.pop(): '';
+            return LIST;
         }
     }
 }
