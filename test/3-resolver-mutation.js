@@ -53,24 +53,30 @@ describe("Testing Resolvers - Type Root - Mutation", () => {
         `;
 
         // Hacer el primer test
-        const result = await tester.graphql(addQuery, undefined, undefined, { value: "Anartz"});
+        await tester.graphql(addQuery, undefined, undefined, { value: "Anartz"});
         // Primer elemento igual a Anartz
         
         // Longitud igual a 1
-        const result2 = await tester.graphql(addQuery, undefined, undefined, { value: "Hola"});
+        await tester.graphql(addQuery, undefined, undefined, { value: "Hola"});
         
-        const result3 = await tester.graphql(addQuery, undefined, undefined, { value: "Adios"});
-        expect(result3.data.add[2]).to.equal("Adios");
-        expect(typeof(result3.data.add[2])).to.equal('string');
-        expect(result3.data.add).to.have.lengthOf(3);
-        console.log(result3.data.add);
+        const result = await tester.graphql(addQuery, undefined, undefined, { value: "Adios"});
+        expect(result.data.add[2]).to.equal("Adios");
+        expect(typeof(result.data.add[2])).to.equal('string');
+        expect(result.data.add).to.have.lengthOf(3);
+        console.log(result.data.add);
         const removeQuery = `
             mutation {
                 removeLast
             }
         `;
 
-        const result4 = await tester.graphql(removeQuery, undefined, undefined, { });
-        console.log(result4.data.removeLast);
+        const result2 = await tester.graphql(removeQuery, undefined, undefined, { });
+        console.log(result2.data.removeLast);
+        expect(result2.data.removeLast[2]).to.equal(undefined);
+        expect(typeof(result2.data.removeLast[2])).to.equal('undefined');
+        expect(result2.data.removeLast[1]).to.equal('Hola');
+        expect(typeof(result2.data.removeLast[1])).to.equal('string');
+        expect(result2.data.removeLast).not.to.have.lengthOf(3);
+        expect(result2.data.removeLast).to.have.lengthOf(2);
     });
 });
