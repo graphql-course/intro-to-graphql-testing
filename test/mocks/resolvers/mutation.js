@@ -6,10 +6,18 @@ const add = (_, { value }) => {
     return LIST;
 }
 
+const removeLast = () => {
+    if (LIST.length) {
+        LIST.pop();
+    }
+    return LIST;
+}
+
 // Añadir constante del resolver mutation
 const resolversMutation = {
     Mutation: {
-        add
+        add,
+        removeLast
     }
 }
 
