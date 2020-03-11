@@ -8,7 +8,11 @@
     "build": "tsc -p . && ncp src/schema build/schema",
     "start:dev": "npm run build:dev",
     "build:dev": "nodemon \"src/server.ts\" --exec \"ts-node\" src/server.ts -e ts,graphql,json",
-    "test": "npx mocha"
+    "test": "npx mocha",
+    "jest": "jest"
+  },
+  "jest": {
+    "testPathIgnorePatterns": ["mocks"]
   },
   "repository": {
     "type": "git",
@@ -47,6 +51,7 @@
     "@types/node": "^12.0.4",
     "chai": "^4.2.0",
     "easygraphql-tester": "^5.1.6",
+    "jest": "^25.1.0",
     "mocha": "^6.2.2",
     "nodemon": "^2.0.1",
     "ts-node": "^8.5.4"
