@@ -4,8 +4,3 @@ type Query {
     helloToGraphQLCourse: String!
     list: [String]
 }
-
-type Mutation {
-    add(value: String!): [String]
-    removeLast: [String]
-}

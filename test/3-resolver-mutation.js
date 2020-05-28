@@ -1,12 +1,13 @@
 'use strict';
 
 const EasyGraphQLTester = require('easygraphql-tester');
-const fs = require('fs');
 const path = require('path');
 
 const LIST = require('./mocks/data').LIST;
+const { loadFilesSync } = require('@graphql-tools/load-files');
+const { mergeTypeDefs } = require('@graphql-tools/merge');
 
-const apiSchema = fs.readFileSync(path.join(__dirname, './../src/schema', 'schema.graphql'), 'utf8');
+const apiSchema = mergeTypeDefs(loadFilesSync(path.join(__dirname, './../src/schema/**/*.graphql')));
 const resolvers = require('./mocks/resolvers/mutation').resolversMutation;
 const expect = require('chai').expect;
 describe("Testing Resolvers - Type Root - Mutation", () => {

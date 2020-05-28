@@ -1,0 +1,4 @@
+type Mutation {
+    add(value: String!): [String]
+    removeLast: [String]
+}
